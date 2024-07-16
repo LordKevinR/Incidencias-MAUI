@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Incidencias.MVVM.Views.CrearIncidencia"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Crear Incidencia"
+    BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Margin="20" Spacing="20">
+            <Image
+                Aspect="AspectFill"
+                Source="crear.svg"
+                WidthRequest="300" />
+            <Border Padding="5">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <Entry
+                    x:Name="entryCodigo"
+                    Keyboard="Numeric"
+                    Placeholder="Codigo de incidencia:"
+                    Text="{Binding Codigo}" />
+            </Border>
+
+            <Border Padding="5">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <Entry
+                    x:Name="entryDescripcion"
+                    Placeholder="Descripción:"
+                    Text="{Binding Descripcion}" />
+            </Border>
+
+            <Border Padding="5">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <Entry
+                    x:Name="entryReportada"
+                    Placeholder="Reportada Por:"
+                    Text="{Binding ReportadaPor}" />
+            </Border>
+
+            <Border Padding="5">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <Editor
+                    x:Name="editorCreacion"
+                    HeightRequest="150"
+                    Placeholder="Comentario sobre la incidencia"
+                    Text="{Binding Comentario}" />
+            </Border>
+
+            <Border Padding="5">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="10" />
+                </Border.StrokeShape>
+                <HorizontalStackLayout>
+                    <CheckBox x:Name="checkPrioridad" IsChecked="{Binding EsPrioridad}" />
+                    <Label Text="Es Prioridad?" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Border>
+
+            <Button
+                BackgroundColor="#0284c7"
+                Command="{Binding PostIncidenciaCommand}"
+                Text="Crear Nueva Incidencia"
+                TextColor="White" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+
+</ContentPage>

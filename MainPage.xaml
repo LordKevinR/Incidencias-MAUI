@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Incidencias.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+
+        <Button Command="{Binding GetAllIncidenciasCommand}" Text="Obtener Incidencias" />
+        <Button Command="{Binding GetSingleIncidenciaCommand}" Text="Obtener 1 Incidencia" />
+        <Button Command="{Binding PostIncidenciaCommand}" Text="Postear 1 Incidencia" />
+    </VerticalStackLayout>
+
+</ContentPage>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Incidencias.MVVM.Views.IncidenciasCompletasView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Incidencias.MVVM.ViewModels"
+    Title="Incidencias Completas"
+    Background="White">
+
+    <Grid RowDefinitions="Auto, Auto, .8*, .1*">
+
+        <Label
+            Margin="0,15,0,0"
+            FontAttributes="Bold"
+            FontSize="Medium"
+            HorizontalOptions="Center"
+            Text="Bienvenido"
+            TextColor="#0284c7" />
+        <Frame
+            Grid.Row="1"
+            Margin="15,10,15,5"
+            Padding="-15">
+            <SearchBar
+                Grid.Row="1"
+                Margin="10"
+                HeightRequest="50"
+                Placeholder="Buscar Incidencia por su codigo" />
+        </Frame>
+
+        <RefreshView
+            Grid.Row="2"
+            Command="{Binding RefreshCommant}"
+            IsRefreshing="{Binding isRefreshing}">
+
+            <ScrollView Grid.Row="2">
+                <VerticalStackLayout>
+                    <CollectionView ItemsSource="{Binding IncidenciasCompletas}">
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeView Margin="10,0,10,0">
+                                    <SwipeView.RightItems>
+                                        <SwipeItem
+                                            BackgroundColor="#0284c7"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DesCompletarCommand}"
+                                            CommandParameter="{Binding}"
+                                            IconImageSource="equis.svg"
+                                            Text="Descompletar" />
+                                        <SwipeItem
+                                            BackgroundColor="#dc2626"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=EliminarCommand}"
+                                            CommandParameter="{Binding}"
+                                            IconImageSource="eliminar.svg"
+                                            Text="Eliminar" />
+                                    </SwipeView.RightItems>
+
+                                    <Grid>
+                                        <Frame BorderColor="White">
+                                            <Frame.Background>
+                                                <LinearGradientBrush EndPoint="1,0">
+                                                    <GradientStop Offset="0" Color="#dcfce7" />
+                                                    <GradientStop Offset="1" Color="#bbf7d0" />
+                                                </LinearGradientBrush>
+                                            </Frame.Background>
+                                        </Frame>
+                                        <VerticalStackLayout Padding="15" Spacing="8">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="Small"
+                                                Text="{Binding descripcion}"
+                                                TextColor="#1e293b" />
+                                            <Label
+                                                FontSize="Micro"
+                                                Text="{Binding createdByUser, StringFormat='Reportado por: {0}'}"
+                                                TextColor="#1e293b" />
+                                            <Label
+                                                FontSize="Micro"
+                                                Text="{Binding code, StringFormat='Código: {0}'}"
+                                                TextColor="#1e293b" />
+                                            <Label
+                                                FontSize="Micro"
+                                                Text="{Binding closedBy, StringFormat='Comentario: {0}'}"
+                                                TextColor="#1e293b" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </SwipeView>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+
+        </RefreshView>
+    </Grid>
+
+</ContentPage>

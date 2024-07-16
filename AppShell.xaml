@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Incidencias.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Incidencias"
+    xmlns:views="clr-namespace:Incidencias.MVVM.Views"
+    Title="Administracion De Incidencias"
+    FlyoutBackgroundColor="#0891b2"
+    FlyoutVerticalScrollMode="Enabled"
+    Shell.FlyoutBehavior="Flyout">
+
+    <Shell.FlyoutHeader>
+        <Image
+            Margin="-20,20,20,20"
+            Aspect="AspectFill"
+            Source="header.svg"
+            WidthRequest="150" />
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout>
+            <Label
+                FontAttributes="Bold"
+                FontSize="Small"
+                HorizontalOptions="Center"
+                Text="Manejador de Incidencias"
+                TextColor="#f8fafc" />
+            <Label
+                Margin="0,0,0,20"
+                FontSize="Small"
+                HorizontalOptions="Center"
+                Text="By Kev. Sanz."
+                TextColor="#f8fafc" />
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid
+                ColumnDefinitions=".2*, .8*"
+                HeightRequest="75"
+                RowSpacing="10">
+                <Image
+                    Margin="5"
+                    Source="{Binding Icon}"
+                    VerticalOptions="Center"
+                    WidthRequest="30" />
+                <Label
+                    Grid.Column="1"
+                    Margin="10,0,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="{Binding Title}"
+                    TextColor="#f8fafc"
+                    VerticalOptions="Center" />
+                <Rectangle
+                    x:Name="rectangle"
+                    Grid.ColumnSpan="2"
+                    Margin="0,2,0,2"
+                    Fill="White"
+                    Opacity=".1" />
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="rectangle" Property="Rectangle.Fill" Value="White" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter TargetName="rectangle" Property="Rectangle.Fill" Value="Black" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <FlyoutItem Title="Incidencias Disponibles" Icon="tablelist.svg">
+        <ShellContent
+            Title="Pendientes"
+            ContentTemplate="{DataTemplate views:MainView}"
+            Route="MainPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Incidencias Prioritarias" Icon="prioridad.svg">
+
+        <ShellContent
+            Title="Prioridades"
+            ContentTemplate="{DataTemplate views:IncidenciasPrioridades}"
+            Route="MainPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Incidencias Completas" Icon="checklist.svg">
+        <ShellContent
+            Title="Incidencias Completas"
+            ContentTemplate="{DataTemplate views:IncidenciasCompletasView}"
+            Icon="checklist.svg"
+            Route="IncidenciasCompletas" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Archivadas" Icon="archivar.svg">
+        <ShellContent
+            Title="Archivadas"
+            ContentTemplate="{DataTemplate views:Archivadas}"
+            Icon="save.svg"
+            Route="CrearIncidencia" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Crear Incidencia" Icon="save.svg">
+        <ShellContent
+            Title="Incidencias Completas"
+            ContentTemplate="{DataTemplate views:CrearIncidencia}"
+            Icon="save.svg"
+            Route="CrearIncidencia" />
+    </FlyoutItem>
+
+
+</Shell>
